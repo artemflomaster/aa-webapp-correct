@@ -1,0 +1,46 @@
+html,
+body {
+  margin: 0px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 400;
+  color: #333;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+
+h1 {
+  margin: 0px;
+  padding: 0px;
+  font-size: 50px;
+}
+
+.App {
+  margin: 50px;
+}
+
+.menu{
+  margin: 25px 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.menu-item{
+  margin-right: 25px;
+  display: flex;
+
+}
+
+.menu-item:last-child{
+  margin-left: 50px;
+}
+
+.menu-text{
+  margin-left: 10px;
+}
+
+hr{
+  width: 100%;
+  border-top: 1px solid #ddd;
+}
