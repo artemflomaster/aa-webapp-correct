@@ -13,34 +13,75 @@ h1 {
   margin: 0px;
   padding: 0px;
   font-size: 50px;
+  line-height: 50px;
 }
 
 .App {
   margin: 50px;
 }
 
-.menu{
+.menu {
   margin: 25px 0;
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
 }
 
-.menu-item{
+.menu-item {
   margin-right: 25px;
   display: flex;
 
 }
 
-.menu-item:last-child{
+.menu-item:last-child {
   margin-left: 50px;
 }
 
-.menu-text{
+.menu-text {
   margin-left: 10px;
+  font-size: 25px;
 }
 
-hr{
+hr {
   width: 100%;
-  border-top: 1px solid #ddd;
+  border: 0.5px solid #eee;
+  border-radius: 1px;
+}
+
+.post {
+  margin-top: 50px;
+
+}
+
+.post-title {
+  font-size: 30px;
+  margin-bottom: 25px;
+  line-height: 30px;
+  display: flex;
+
+}
+
+.post-avvvatar {
+  margin-right: 20px;
+}
+
+.post-text {
+  margin: 0 0 5px 50px;
+}
+
+.post-text img {
+  margin-top: 25px;
+  border-top: 30px solid #935F10;
+  border-bottom: 1px solid #333;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+  border-radius: 6px;
+
+}
+
+.post-tags {
+  color: #888;
+  font-size: 15px;
+  font-style: italic;
+  margin-left: 50px;
 }
