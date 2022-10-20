@@ -9,10 +9,16 @@ export default function App() {
   const etCetera = nanoid();
   const cv = nanoid();
 
-    return (
+  let clickedSection = false;
+  function clickHandler(section) {
+    clickedSection = section;
+    // console.log(section);
+  }
+
+  return (
     <div className="App">
-      <Header web={web} gamedev={gamedev} etCetera={etCetera} cv={cv} />
-      <Content web={web} gamedev={gamedev} etCetera={etCetera} cv={cv}/>
+      <Header web={web} gamedev={gamedev} etCetera={etCetera} cv={cv} sectionHandler={clickHandler}/>
+      <Content web={web} gamedev={gamedev} etCetera={etCetera} cv={cv} clickedSection={clickedSection} />
     </div>
   );
 }

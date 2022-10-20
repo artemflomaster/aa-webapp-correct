@@ -71,12 +71,14 @@ hr {
 
 .post-text img {
   margin-top: 25px;
+}
+
+.window {
   border-top: 30px solid #935F10;
   border-bottom: 1px solid #333;
   border-left: 1px solid #333;
   border-right: 1px solid #333;
   border-radius: 6px;
-
 }
 
 .post-tags {

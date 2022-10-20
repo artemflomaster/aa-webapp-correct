@@ -1,6 +1,6 @@
 import React from "react";
 import Avvvatars from "avvvatars-react";
-import { nanoid } from "nanoid";
+
 
 
 export default function Post(props) {

@@ -7,7 +7,7 @@ export default data = [
         innertext: '<div>Web application build with React JS and prosesses data from simple API.</div> \n' +
             '    <div>The Trivia API Database https://opentdb.com/api_config.php </div> \n' +
             '    <div>Fetch, async, useEffect, States and a few callback hells</div> \n' +
-            '    <img src="../screens/quizzical.jpg" width="650"  alt="Quizzical" />',
+            '    <img class="window" src="../screens/quizzical.jpg" width="650"  alt="Quizzical" />',
         tags: '["javascript", "React", "API", "CSS", "web"]'
     },
     {
