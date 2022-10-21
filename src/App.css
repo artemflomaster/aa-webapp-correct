@@ -16,6 +16,11 @@ h1 {
   line-height: 50px;
 }
 
+a {
+  color: #333;
+}
+
+
 .App {
   margin: 50px;
 }
@@ -27,10 +32,26 @@ h1 {
   flex-direction: row;
 }
 
+.header h1:hover {
+  /* text-decoration: underline;
+  text-decoration-style:dashed;
+  text-decoration-color: #888;
+  text-decoration-thickness: 2px; */
+  cursor: pointer;
+}
+
 .menu-item {
   margin-right: 25px;
   display: flex;
+  cursor: pointer;
 
+}
+
+.menu-item:hover {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #333;
+  text-decoration-thickness: 1px;
 }
 
 .menu-item:last-child {
@@ -86,4 +107,10 @@ hr {
   font-size: 15px;
   font-style: italic;
   margin-left: 50px;
+  display: flex;
+
+}
+
+.tag {
+  margin-right: 12.5px;
 }
