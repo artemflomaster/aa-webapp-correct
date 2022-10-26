@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import Header from './Header';
 import Post from "./Post.js"
-import data from "./data";
+import dataEn from "./dataEn";
+import dataRu from "./dataRu";
 import { nanoid } from "nanoid";
 
 export default function App() {
@@ -11,18 +12,10 @@ export default function App() {
   const etCetera = nanoid();
   const cv = nanoid();
 
-  //loading posts data and updationd state
-  React.useEffect(() => {
-    setPostData(
-      {
-        isLoaded: true,
-        isClicked: false,
-        posts: data
-      }
-    )
-  }, []);
+  //laguage state
+  const [lang, setLang] = React.useState('Ru')
 
-  //posts data
+  //posts data state
   const [postData, setPostData] = React.useState({
     isLoaded: false,
     isClicked: false,
@@ -30,9 +23,102 @@ export default function App() {
   })
 
 
+  //loading posts data and updationg data state
+
+  //hardcoded version of useEffect
+  React.useEffect(() => {
+    if (lang === "Ru") {
+      setPostData(
+        {
+          isLoaded: true,
+          isClicked: false,
+          posts: dataRu
+        }
+      )
+    } else {
+
+      setPostData(
+        {
+          isLoaded: true,
+          isClicked: false,
+          posts: dataEn
+        }
+      )
+
+
+    }
+    console.log('loaded lang ' + lang)
+  }, [lang]);
+
+  // React.useEffect(() => {
+  //   getData();
+  // }, []);
+
+
+
+  //function to fetch API data
+  async function getData() {
+    try {
+      console.log('Fetching');
+      const url = 'http://localhost:5000/server';
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Failed. Server response ${response.status}`)
+      }
+      const json = await response.json();
+
+
+      if (json.response_code === 1) {
+        throw new Error(`Failed. Wrong API request. No results`)
+      } else if (json.response_code === 2) {
+        throw new Error(`Failed. Wrong API parameters. No results`)
+      }
+      console.log('Fetched!')
+
+      setPostData(
+        {
+          isLoaded: true,
+          isClicked: false,
+          posts: json
+        }
+      )
+
+    }
+    catch (err) {
+      console.error(err);
+      setPostData({
+        isLoaded: false,
+        isClicked: false,
+        errorMessage: 'Somethin went wrong. Please Try Again!',
+        posts: null
+      });
+    }
+
+  }
+
+
+  //language handler
+  function switchLang(clickedLang) {
+    if (lang !== clickedLang) {
+      setLang(prevLang => {
+        return prevLang === 'Ru' ? 'En' : 'Ru'
+      })
+
+    }
+  }
+
+  //add style to chosen laguage
+  let isRuChosen = '';
+  let isEnChosen = '';
+  lang === 'Ru' ? isRuChosen = 'lang-chosen' : isEnChosen = 'lang-chosen';
+
+
+
   //the preloading value for posts content
   let content = 'content is loading';
 
+
+  //generating components to show
   if (postData.isLoaded) {
     content = postData.posts.map(item => {
 
@@ -58,13 +144,13 @@ export default function App() {
 
       //returning bunch of the posts
       return (
-        <Post key={nanoid()} title={item.title} text={(item.innertext)} tags={item.tags} avvvatar={avvvatarKey} />
+        <Post key={nanoid()} title={item.title} text={item.innertext} tags={item.tags} avvvatar={avvvatarKey} />
       )
     })
 
   };
 
-//update state with tag that some section was choose
+  //update state with tag that some section was choose
   function clickHandler(section) {
 
     setPostData(oldData => {
@@ -79,7 +165,11 @@ export default function App() {
 
   return (
     <div className="App">
-      <Header web={web} gamedev={gamedev} etCetera={etCetera} cv={cv} sectionHandler={clickHandler} />
+      <div className='lang-block'>
+        <span className={'lang-item ru ' + isRuChosen} onClick={() => switchLang('Ru')}>RU</span>
+        <span className={'lang-item en ' + isEnChosen} onClick={() => switchLang('En')}>EN</span>
+      </div>
+      <Header lang={lang} web={web} gamedev={gamedev} etCetera={etCetera} cv={cv} sectionHandler={clickHandler} />
       <div className="content">
         {content}
       </div>
