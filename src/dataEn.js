@@ -1,16 +1,7 @@
 let dataEn;
 
 export default dataEn = [
-    {
-        id: 6,
-        section: 'CV',
-        title: 'Let me introduce myself.',
-        innertext: '<div>My name is Artem Alexandrov</div>\n' +
-            '<div>I am passioned with programming and computer sciense.</div>\n' +
-            '<div>Please find <a href="https://hh.ru/applicant/resumes/view?resume=0f2fc040ff0b1eb19d0039ed1f524237727646" alt="HeadHunter" target="parent">my recent CV at hh.ru</a></div>' +
-            '<img class="border" src="../screens/me.jpg" alt="me" />\n',
-        tags: '["Programmer", "Engineer", "philanthropist"]'
-    },
+
 
     {
         id: 1,
@@ -53,6 +44,16 @@ export default dataEn = [
         innertext: '<div>New Year hobby project based in Arduino</div>\n' +
             '     <a href="https://vimeo.com/manage/videos/56931288" target="parent"><img class="border" src="../screens/elka.gif" alt="Èlka" /></a>',
         tags: '["Arduino", "Hardware"]'
+    },
+    {
+        id: 6,
+        section: 'CV',
+        title: 'Let me introduce myself.',
+        innertext: '<div>My name is Artem Alexandrov</div>\n' +
+            '<div>I am passioned with programming and computer sciense.</div>\n' +
+            '<div>Please find <a href="https://hh.ru/applicant/resumes/view?resume=0f2fc040ff0b1eb19d0039ed1f524237727646" alt="HeadHunter" target="parent">my recent CV at hh.ru</a></div>' +
+            '<img class="border" src="../screens/me.jpg" alt="me" />\n',
+        tags: '["Programmer", "Engineer", "philanthropist"]'
     }
 
 ]

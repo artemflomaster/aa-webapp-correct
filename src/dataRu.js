@@ -1,16 +1,6 @@
 let dataRu;
 
 export default dataRu = [
-    {
-        id: 6,
-        section: 'CV',
-        title: 'Позвольте представиться',
-        innertext: '<div>Меня зовут Артём Александров</div>\n' +
-            '<div>Программирование это моя страсть и хобби</div>\n' +
-            '<div>Моё свежее <a href="https://hh.ru/applicant/resumes/view?resume=0f2fc040ff0b1eb19d0039ed1f524237727646" alt="HeadHunter" target="parent">резюме можно найти на hh.ru</a></div>' +
-            '<img class="border" src="../screens/me.jpg" alt="me" />\n',
-        tags: '["Programmer", "Engineer", "philanthropist"]'
-    },
 
     {
         id: 1,
@@ -35,7 +25,7 @@ export default dataRu = [
         id: 3,
         section: 'GameDev',
         title: 'Четыре столпа ООП',
-        innertext: '<div>В игре можно увидеть четыре столпа Объектно Ориентированного Программирования в прямо смысле и в коде.</div>\n' +
+        innertext: '<div>В игре можно увидеть четыре столпа Объектно Ориентированного Программирования в прямом смысле и в коде.</div>\n' +
             '<div>Шутливая игра-тренировка в рамках отработки приципов ООП на C#</div>\n' +
             '     <a href="https://play.unity.com/mg/other/webgl-builds-119289" target="parent"><img class="border" src="../screens/oop-game.jpg" alt="OOP pillars" /></a>',
         tags: '["Csharp", "Unity", "GameDev"]'
@@ -56,6 +46,16 @@ export default dataRu = [
             '<div>Использованы ультразвузовой дальномер, светодиоды и бипер от компьютера</div>\n' +
             '     <a href="https://vimeo.com/manage/videos/56931288" target="parent"><img class="border" src="../screens/elka.gif" alt="Èlka" /></a>',
         tags: '["Arduino", "Hardware"]'
+    },
+    {
+        id: 6,
+        section: 'CV',
+        title: 'Позвольте представиться',
+        innertext: '<div>Меня зовут Артём Александров</div>\n' +
+            '<div>Программирование это моя страсть и хобби</div>\n' +
+            '<div>Моё свежее <a href="https://hh.ru/applicant/resumes/view?resume=0f2fc040ff0b1eb19d0039ed1f524237727646" alt="HeadHunter" target="parent">резюме можно найти на hh.ru</a></div>' +
+            '<img class="border" src="../screens/me.jpg" alt="me" />\n',
+        tags: '["Programmer", "Engineer", "philanthropist"]'
     }
 
 ]

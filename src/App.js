@@ -12,6 +12,9 @@ export default function App() {
   const etCetera = nanoid();
   const cv = nanoid();
 
+  //preloader animation
+  const preloader = <div className="loader-container"><div className="spinner"></div></div>
+
   //laguage state
   const [lang, setLang] = React.useState('Ru')
 
@@ -52,7 +55,7 @@ export default function App() {
 
   // React.useEffect(() => {
   //   getData();
-  // }, []);
+  // }, [lang]);
 
 
 
@@ -60,7 +63,7 @@ export default function App() {
   async function getData() {
     try {
       console.log('Fetching');
-      const url = 'http://localhost:5000/server';
+      const url = lang === 'Ru' ? 'http://localhost:5000/server/ru' : 'http://localhost:5000/server/en';
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Failed. Server response ${response.status}`)
@@ -99,11 +102,18 @@ export default function App() {
 
   //language handler
   function switchLang(clickedLang) {
+
     if (lang !== clickedLang) {
       setLang(prevLang => {
         return prevLang === 'Ru' ? 'En' : 'Ru'
       })
-
+      setPostData(prevData => {
+        return ({
+          ...prevData,
+          posts: null,
+          isLoaded: false
+        })
+      })
     }
   }
 
@@ -115,7 +125,7 @@ export default function App() {
 
 
   //the preloading value for posts content
-  let content = 'content is loading';
+  let content = preloader;
 
 
   //generating components to show

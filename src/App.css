@@ -27,6 +27,10 @@ a {
 
 }
 
+/* .content{
+  height: 200px;
+} */
+
 .lang-block {
   position: absolute;
   right: 50px;
@@ -45,7 +49,7 @@ a {
   margin-right: 10px;
 }
 
-.lang-chosen{
+.lang-chosen {
   text-decoration: underline;
   text-decoration-thickness: 1px;
 
@@ -152,6 +156,39 @@ hr {
 .tag {
   margin-right: 12.5px;
 }
+
+/* prealoader start */
+.loader-container {
+  position: relative;
+  /* width: 50px;
+  height: 50px; */
+  /* z-index: 1; */
+  left: 45%;
+ /* bottom:50%; */
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 8px solid;
+  border-color: #D6DBF5 transparent #D6DBF5 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+}
+
+@keyframes spin-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* prealoader end */
+
+
 
 @media screen and (max-width : 800px) {
 
