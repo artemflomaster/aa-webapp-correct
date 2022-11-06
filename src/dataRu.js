@@ -53,7 +53,8 @@ export default dataRu = [
         title: 'Позвольте представиться',
         innertext: '<div>Меня зовут Артём Александров</div>\n' +
             '<div>Программирование это моя страсть и хобби</div>\n' +
-            '<div>Моё свежее <a href="https://hh.ru/applicant/resumes/view?resume=0f2fc040ff0b1eb19d0039ed1f524237727646" alt="HeadHunter" target="parent">резюме можно найти на hh.ru</a></div>' +
+            '<div>Моё свежее резюме можно <a href="https://hh.ru/applicant/resumes/view?resume=0f2fc040ff0b1eb19d0039ed1f524237727646" alt="HeadHunter" target="parent">открыть на hh.ru</a>'+
+             ' или открыть <a href="../downloads/Александров Артём Петрович_6-11-22.pdf" target="parent" alt="ссылка на pdf">как pdf</a></div>' +
             '<img class="border" src="../screens/me.jpg" alt="me" />\n',
         tags: '["Programmer", "Engineer", "philanthropist"]'
     }

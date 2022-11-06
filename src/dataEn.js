@@ -48,10 +48,11 @@ export default dataEn = [
     {
         id: 6,
         section: 'CV',
-        title: 'Let me introduce myself.',
+        title: 'Let me introduce myself',
         innertext: '<div>My name is Artem Alexandrov</div>\n' +
             '<div>I am passioned with programming and computer sciense.</div>\n' +
-            '<div>Please find <a href="https://hh.ru/applicant/resumes/view?resume=0f2fc040ff0b1eb19d0039ed1f524237727646" alt="HeadHunter" target="parent">my recent CV at hh.ru</a></div>' +
+            '<div>Please find my recent CV <a href="https://hh.ru/applicant/resumes/view?resume=0f2fc040ff0b1eb19d0039ed1f524237727646" alt="HeadHunter" target="parent">at hh.ru</a>' +
+            ' or open here <a href="../downloads/Artem_Alexandrov_cv_en_6-11-22.pdf" target="parent" alt="link to pdf">as pdf</a></div>'+
             '<img class="border" src="../screens/me.jpg" alt="me" />\n',
         tags: '["Programmer", "Engineer", "philanthropist"]'
     }
