@@ -29,33 +29,33 @@ export default function App() {
   //loading posts data and updationg data state
 
   //hardcoded version of useEffect
-  React.useEffect(() => {
-    if (lang === "Ru") {
-      setPostData(
-        {
-          isLoaded: true,
-          isClicked: false,
-          posts: dataRu
-        }
-      )
-    } else {
-
-      setPostData(
-        {
-          isLoaded: true,
-          isClicked: false,
-          posts: dataEn
-        }
-      )
-
-
-    }
-    console.log('loaded lang ' + lang)
-  }, [lang]);
-
   // React.useEffect(() => {
-  //   getData();
+  //   if (lang === "Ru") {
+  //     setPostData(
+  //       {
+  //         isLoaded: true,
+  //         isClicked: false,
+  //         posts: dataRu
+  //       }
+  //     )
+  //   } else {
+
+  //     setPostData(
+  //       {
+  //         isLoaded: true,
+  //         isClicked: false,
+  //         posts: dataEn
+  //       }
+  //     )
+
+
+  //   }
+  //   console.log('loaded lang ' + lang)
   // }, [lang]);
+
+  React.useEffect(() => {
+    getData();
+  }, [lang]);
 
 
 
@@ -63,7 +63,7 @@ export default function App() {
   async function getData() {
     try {
       console.log('Fetching');
-      const url = lang === 'Ru' ? 'http://localhost:5000/server/ru' : 'http://localhost:5000/server/en';
+      const url = lang === 'Ru' ? 'http://localhost/phptest/php/pdo.php?lang=ru' : 'http://localhost/phptest/php/pdo.php?lang=en';
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Failed. Server response ${response.status}`)
