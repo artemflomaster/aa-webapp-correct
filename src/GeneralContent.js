@@ -61,7 +61,7 @@ export default function GeneralContent() {
   async function getData() {
     try {
       console.log('Fetching');
-      const url = lang === 'Ru' ? 'https://artemalexandrov.ru/php/pdo.php?lang=ru' : 'https://artemalexandrov.ru/php/pdo.php?lang=en';
+      const url = lang === 'Ru' ? 'http://localhost/phptest/php-rest/api/read.php' : 'https://artemalexandrov.ru/php/pdo.php?lang=en';
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Failed. Server response ${response.status}`)

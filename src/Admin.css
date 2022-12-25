@@ -1,20 +1,26 @@
 .admin-wrapper{
     margin: 20px;
     display: flex;
-}
+   
 
+}
 .list-and-form{
     display: flex;
     flex-direction: column;
     margin-right: 40px;
     font-size: smaller;
     width: 50%;
+    background-color: #ddd;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px; 
 }
 
 .login-form{
     font-size: smaller;
     display: flex;
     flex-direction: column;
+   
 }
 
 .login-form input {
@@ -24,11 +30,38 @@
 .posts-list{
     display: flex;
     flex-direction: column;
+   
     
 }
 
 .post-row{
     border-bottom: 1px solid black;
+}
+
+.post-row:hover{
+   background-color: #eee;
+}
+
+.edit-button{
+    margin-left: 5px;
+    font-style: italic;
+    font-size: smaller;
+    color: rgb(48, 0, 207);
+}
+
+.edit-button:hover{
+cursor: pointer;;
+}
+
+.delete-button{
+    margin-left: 10px;
+    font-style: italic;
+    font-size: smaller;
+    color: rgb(207, 0, 0);
+}
+
+.delete-button:hover{
+cursor: pointer;;
 }
 
 .form {
@@ -67,8 +100,7 @@
 }
 
 .section-radio {
-    margin-right: 5px;
-    margin-left: 15px;
+      margin-left: 10px;
 }
 
 .section-radio:first-child {
@@ -89,5 +121,6 @@
     /* border: 1px solid black;
     border-radius: 5px; */
     width: 100%;
+    background-color: white;
 
 }
