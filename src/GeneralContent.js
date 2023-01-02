@@ -24,7 +24,7 @@ export default function GeneralContent() {
   })
 
 
-  //loading posts data and updationg data state
+  //loading posts data and updating data state
 
   //hardcoded version of useEffect
   // React.useEffect(() => {
@@ -61,7 +61,7 @@ export default function GeneralContent() {
   async function getData() {
     try {
       console.log('Fetching');
-      const url = lang === 'Ru' ? 'http://localhost/phptest/php-rest/api/read.php' : 'https://artemalexandrov.ru/php/pdo.php?lang=en';
+      const url = lang === 'Ru' ? 'https://artemalexandrov.ru/php/php-rest/api/read.php' : 'https://artemalexandrov.ru/php/pdo.php?lang=en';
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Failed. Server response ${response.status}`)

@@ -21,7 +21,10 @@ export default function AdminPanel() {
         title: "",
         section: "Web",
         innertext: "",
-        tags: "[]"
+        tags: "[]",
+        username: "",
+        password: "",
+        errorMessage: ""
     })
 
     //controlling edit or new post mode
@@ -33,7 +36,7 @@ export default function AdminPanel() {
 
     React.useEffect(() => {
         getData();
-    }, [lang]);
+    }, [postData.isLoaded]);
 
 
 
@@ -41,7 +44,7 @@ export default function AdminPanel() {
     async function getData() {
         try {
             console.log('Fetching');
-            const url = lang === 'Ru' ? 'http://localhost/phptest/php-rest/api/read.php' : 'https://artemalexandrov.ru/php/pdo.php?lang=en';
+            const url = lang === 'Ru' ? 'https://artemalexandrov.ru/php/php-rest/api/read.php' : 'https://artemalexandrov.ru/php/pdo.php?lang=en';
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`Failed. Server response ${response.status}`)
@@ -130,39 +133,64 @@ export default function AdminPanel() {
         const postToset = postData.posts.filter(post => post.id === id);
 
         console.log(postToset[0]);
-        setPost(postToset[0]);
+        setPost(prev => {
+            return ({
+                ...prev,
+                ...postToset[0]
+            }
+            )
+        });
     }
 
 
     //delete button on the post list
     function deleteHandler(id) {
-        const data = { "id": id };
-        const url = "http://localhost/phptest/php-rest/api/delete.php"
+        if (checkCredentials()) {
+            const data = {
+                "id": id,
+                "username": post.username,
+                "password": post.password
+            };
+            const url = "https://artemalexandrov.ru/php/php-rest/api/delete.php"
 
-        async function DeleteData(url, data) {
-            const response = await fetch(url, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-            return response;
+            async function DeleteData(url, data) {
+                const response = await fetch(url, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                return response;
+            }
+
+            DeleteData(url, data)
+                .then((response) => {
+
+                    setEditMode(prev => {
+                        return (
+                            {
+                                ...prev,
+                                isEdit: false
+                            }
+                        )
+                    })
+                    setPostData({
+                        isLoaded: false
+                    })
+                    return response.json()
+                })
+                .then(answer => {
+                    setPost(prev => {
+                        return ({
+                            ...prev,
+                            errorMessage: answer
+                        })
+                    });
+                });
+
+
         }
-
-        DeleteData(url, data)
-            .then((data) => {
-                console.log(data);
-            });
-
-        setEditMode(prev => {
-            return (
-                {
-                    ...prev,
-                    isEdit: false
-                }
-            )
-        })
     }
 
     //generating list of posts
@@ -181,24 +209,28 @@ export default function AdminPanel() {
     //URLs and data sets for API
     let postFormHeader = 'New post';
     let buttonName = 'Create post';
-    let apiUrl = 'http://localhost/phptest/php-rest/api/create.php';
+    let apiUrl = 'https://artemalexandrov.ru/php/php-rest/api/create.php';
     let apiData = {
         "title": post.title,
         "section": post.section,
         "innertext": post.innertext,
-        "tags": post.tags
+        "tags": post.tags,
+        "username": post.username,
+        "password": post.password
     }
 
     if (editMode.isEdit) {
         postFormHeader = 'Edit post ' + editMode.editId;
         buttonName = 'Update post';
-        apiUrl = 'http://localhost/phptest/php-rest/api/update.php';
+        apiUrl = 'https://artemalexandrov.ru/php/php-rest/api/update.php';
         apiData = {
             "id": editMode.editId,
             "title": post.title,
             "section": post.section,
             "innertext": post.innertext,
-            "tags": post.tags
+            "tags": post.tags,
+            "username": post.username,
+            "password": post.password
         }
 
     }
@@ -206,26 +238,59 @@ export default function AdminPanel() {
 
     //create new post and edit function
     function apiFunction(url, data) {
+        if (checkCredentials()) {
+            async function PostData(url, data) {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                return response;
+            }
 
-        async function PostData(url, data) {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-            return response;
+            PostData(url, data)
+                .then((data) => {
+                    setPostData({
+                        isLoaded: false
+                    })
+                    return data.json();
+                })
+                .then(answer => {
+                    setPost(prev => {
+                        return ({
+                            ...prev,
+                            errorMessage: answer
+                        })
+                    });
+                })
         }
-
-        PostData(url, data)
-            .then((data) => {
-                console.log(data);
-            });
     }
 
+    //check if password and login inserted
+    function checkCredentials() {
+        console.log(false);
+        console.log(post.username, post.password);
+        if (post.username === "" || post.password === "") {
+            setPost(prev => {
+                return ({
+                    ...prev,
+                    errorMessage: "Enter username and password"
+                })
+            })
 
-
+            return false
+        } else {
+            setPost(prev => {
+                return ({
+                    ...prev,
+                    errorMessage: ""
+                })
+            })
+            return true;
+        }
+    }
 
     const form = <form className="form">
         <h3>{postFormHeader}</h3>
@@ -264,8 +329,8 @@ export default function AdminPanel() {
         <input className="tags-input" id="tags-input" name="tags"
             value={JSON.parse(post.tags)} onChange={e => previewHandler(e.target.name, e.target.type, e.target.value)} />
 
-        <button onClick={() => apiFunction(apiUrl, apiData)}>{buttonName}</button>
-
+        <button type="button" onClick={() => apiFunction(apiUrl, apiData)}>{buttonName}</button>
+        <div className="error-string">{post.errorMessage}</div>
     </form>
 
     const preview = <div className="preview">
@@ -278,9 +343,12 @@ export default function AdminPanel() {
             <div className="list-and-form">
                 <div className="login-form">
                     <label htmlFor="username">Username</label>
-                    <input name="username"></input>
+                    <input name="username"
+                        onChange={e => previewHandler(e.target.name, e.target.type, e.target.value)}></input>
                     <label htmlFor="password">Password</label>
-                    <input name="password" type="password" autoComplete="current-password" required></input>
+                    <input name="password" type="password"
+                        autoComplete="current-password" required
+                        onChange={e => previewHandler(e.target.name, e.target.type, e.target.value)}></input>
                 </div>
                 <div className="posts-list">
                     <h3>List of posts</h3>
