@@ -19,8 +19,18 @@ h1 {
 
 a {
   color: #333;
+  transition: background-color 0.5s;
 }
 
+a:hover {
+  color: #333;
+  background-color: pink;
+
+}
+
+.img-link:hover {
+  background-color: rgba(0, 0, 0, 0);
+}
 
 .App {
   margin: 50px;
@@ -77,6 +87,7 @@ a {
   display: flex;
   cursor: pointer;
   white-space: nowrap;
+
 
 }
 
@@ -164,7 +175,7 @@ hr {
   height: 50px; */
   /* z-index: 1; */
   left: 45%;
- /* bottom:50%; */
+  /* bottom:50%; */
 }
 
 .spinner {
